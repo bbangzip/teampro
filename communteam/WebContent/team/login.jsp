@@ -6,13 +6,14 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <style>
+	body{background-color:#93bce1;}
 	#tbl, #btn, #sch{position:absolute;}
 	#tbl tr td{text-align:right;border:0px}
 	#btn{left:250px; top:145px}
 	#sch{top:165px;left:30px}
 	#point{font-size:19px; color:#662500; font-weight:bold}
 	#userId, #userPwd{width:150px}
-	#logWin{position:absolute; left:40%; top:35%; border:2px solid black; height:215px; width:325px}
+	#logWin{position:absolute; left:40%; top:35%; border:2px solid black; height:215px; width:325px; background-color:#dbecfd;}
 	#tbl{left:5px}
 	#logWin h6{margin-left:70px; color:gray;}
 	#sch a:link{text-decoration:none; color:gray;}

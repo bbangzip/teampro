@@ -14,49 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-	body{padding:0px;margin:0px}
-	#main{width:1000px; 
-		  heigth:1300px;
-		  margin-left:50%;
-		  left:-500px;
-		  position:relative;
-		  top:0px;}
-	
-	#listbox{width:600px; 
-			 height:550px; 
-			 position:relative; 
-			 left:50%; 
-			 margin-left:-300px; 
-			 top:0px;
-			 border:1px solid gray;
-			 background-color:#D3E1EB;}
-		#list{ list-style-type:none;}
-		#list li:nth-child(2n+1) {width:100px; float:left; text-align:right; line-height:50px; padding-right:5px;}
-		#list li:nth-child(2n) {line-height:50px;}
-	
-	#map {position:relative;
-				top:0px;
-				left:50%;
-				margin-left:-300px;
-				width:600px;
-				height:300px}
-
-	
-	#buttonbox{width:600px; 
-			   height:80px; 
-			   position:relative;
-			   top:0px; 
-			   left:50%; 
-			   margin-left:-300px;
-			   }
-	#bottonbox_inside{width:260px;
-					  height:40px; 
-					  position:relative;
-					  top:20px; 
-					  left:50%;
-					  margin-left:-130px }
-</style>
+<link rel="stylesheet" type="text/css" href="css/writeboard.css"/>
 <script src="js/jquery-1.11.3.min.js"> </script>
 
 </head>
@@ -104,7 +62,7 @@
 			
 		</ul>
 	</div>
-
+<!-- 지도가 시작되는 영역 -------------------------------------------------------------------->
 	<div id="map"></div>
 
 <script src="//apis.daum.net/maps/maps3.js?apikey=ba13e8077519821f8fa76f20d6d6577a&libraries=services"></script>
@@ -165,10 +123,14 @@ geocoder.addr2coord('<%=dong %>', function(status, result) {
 		history.go(-1);
 	}
 </script>
-
-
 </section>
 
+<!-- 원하는 위치로 이동하세요 안내box-->
+<div id="map_popup"> 
+	원하시는 위치로 이동하세요
+</div>
+
+<!-- 버튼이 시작되는 영역 -------------------------------------------------------------------->
 <div id="buttonbox">
 	<div id="bottonbox_inside">
 		<input type="submit" value="완료" style="width:80px">
