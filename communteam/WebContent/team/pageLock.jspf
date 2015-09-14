@@ -1,0 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
+<%	String seChk = (String)session.getAttribute("userId");
+
+	if(seChk==null || seChk.equals("")){%>
+		<script>
+			alert("로그인을 하지 않으셨습니다. 로그인 페이지로 이동합니다.");
+			location.href="login.jsp";
+		</script>
+			
+	<%}%>

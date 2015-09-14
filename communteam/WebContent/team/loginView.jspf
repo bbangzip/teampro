@@ -1,0 +1,35 @@
+<%@page import="team.MemberVO"%>
+<%@page import="team.CommunDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	CommunDAO cdlo=new CommunDAO();
+	MemberVO nmv = new MemberVO();
+	String[] mylocalsShow = new String[3];
+	String id="";
+	if(session.getAttribute("loginCheck")!=null && session.getAttribute("loginCheck").equals("Y")){
+		id = (String)session.getAttribute("userid");	
+		
+	}
+
+%>
+<ul>
+		<%
+		if(session.getAttribute("loginCheck")==null || session.getAttribute("loginCheck").equals("N")){
+		%>
+			<li class="log_bf"></li> <!-- 크기를 맞추기위해 감춰논 li -->
+			<li class="log_bf"><a href="resigtfrom1.html">회원가입</a></li>
+			<li class="log_bf"><a href="login.jsp">로그인</a></li>
+		<%
+		}else if(session.getAttribute("loginCheck")!=null && session.getAttribute("loginCheck").equals("Y")){
+		%>	
+				<li class="log_af"><a href="memberEdit.jsp"><%=session.getAttribute("userId")%>님</a>
+				
+				</li>
+				<li class="log_af"><a href="sessionOut.jsp">로그아웃</a></li>
+				<li class="log_af" ><a href="pageList.jsp">쪽지</a></li>
+		<%} %>
+		</ul>
+		<style>
+			ul li{padding:0px;margin:0px;list-style-type:none;float:left}
+		</style>

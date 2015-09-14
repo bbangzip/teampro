@@ -1,0 +1,54 @@
+////list 레코드추가//////////////////////////////////////////////////////////////////////
+	public int writeboard_Insert(ListVO lv){
+		int result = 0;
+		try{
+			String sql = "insert into ListTbl values(listsq.nextVal,?,?,?,?,?,?,sysdate,?,?)";
+			dbConn(sql);
+
+			pstmt.setString(1, toKorUTF(lv.getHdName()));
+			pstmt.setString(2, toKorUTF(lv.getSubJect()));
+			pstmt.setString(3, toKorUTF(lv.getContent()));
+			pstmt.setString(4, lv.getUserId());
+			pstmt.setString(5, lv.getListPwd());
+			pstmt.setString(6, lv.getImgFile());
+			pstmt.setString(7, lv.getLocation());
+			pstmt.setString(8, toKorUTF(lv.getDong()));
+			result = pstmt.executeUpdate();
+
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(pstmt !=null){pstmt.close();}
+				if(con !=null){con.close();}
+			}catch(Exception e){e.printStackTrace();}
+		}
+		return result;
+	}
+////listTbl 레코드 읽어 listVO에 값반환////////////////////////////////////////////////////////////////////////
+	public ListVO getLiData(String id, int num){
+		ListVO lv = new ListVO();
+		try{
+				String sql = "select hdname,subject,content,listpwd,imgfile,writedate,location,dong from listTbl where userId=? and num=?";
+				dbConn(sql);
+				pstmt.setString(1, id);
+				pstmt.setInt(2, num);
+				rs = pstmt.executeQuery();
+				
+				lv.setHdName(rs.getString(1));
+				lv.setSubJect(rs.getString(2));
+				lv.setContent(rs.getString(3));
+				lv.setListPwd(rs.getString(4));
+				lv.setImgFile(rs.getString(5));
+				lv.setWriteDate(rs.getString(6));
+				lv.setLocation(rs.getString(7));
+				lv.setDong(rs.getString(8));
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			dbClose();
+		}return lv;
+	}
+//////////////////////////////////////////////////////////////////////////////
