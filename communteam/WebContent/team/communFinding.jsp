@@ -43,18 +43,12 @@
 	
 	#main{width:1000px; height:1000px;margin-left:50%;
 	left:-500px;position:absolute;}
-	#Banner{width:100%;height:100px; background-color:#67A2D5;
-	position:absolute;}
-	#Banner>h1{font-size:40px;text-align:center;line-height:100px;font-family: 'Sigmar One', cursive; color:white;}
-	#Banner>h1:hover{text-decoration: none; color:red}
-	#Banner>h1:visited{text-decoration: none; color:white}
 	
-	#inform{position:absolute;width:200px;height:100px;top:0px;left:850px;}
 	#map{width:100%;height:400px;top:100px;position:absolute;}
 	#goomap{width:96%;height:90%;margin:2% 2% 2% 2%}
 	#localFind{width:100%;height:100px;top:500px;text-align:center;line-height:100px;position:absolute;}
 	/**************************************************************************************/
-	#searchbox{width:100%; height:100px; background-color:#67A2D5;
+	#searchbox{width:100%; background-color:#67A2D5;
 	position:absolute;}
 		#scbox_main{width:800px; height:50px; background-color:white; position:relative; left:100px; top:30px }
 		#scbox_main>div{float:left; margin:0px; padding:0px;width:158px; height:50px; font-weight:bold;  text-align: center; line-height:50px; border:1px solid gray;position:relative}
@@ -72,8 +66,9 @@
 	} /*commun*/
 	#descript{margin:50px 0px 0px 50px;} 
 	.descstyle{background-color: #CDD6DB;/*지역회원*/
-	
-	width:200px;border:1px solid gray;text-align:center}
+	width:200px;border-top:1px solid black;border-bottom:1px solid black;border-left:1px solid black;text-align:center}
+	.listStyle{background-color:white;width:200px;
+	border-bottom:1px solid gray;border-left:1px solid gray;text-align:center}
 </style>
 <script>
 
@@ -103,6 +98,8 @@
 		$("#dongShow").on('change',function(){
 
 		 	location.href="communFinding.jsp?dong="+$('#dongShow').val()+"&gu="+$('#guShow').val()});
+		
+		
 		
 	});
 	function myCommunMove(){
@@ -154,12 +151,9 @@
 <body>
 <%@ include file="pageLock.jspf" %>
 <div id="main">
-	<div id="Banner">
-		<h1><a href="index.jsp">COMMUN</a></h1>
-		<div id="inform">
-			<%@ include file="loginView.jspf" %>
-		</div>
-	</div>
+ 
+ 	<%@ include file="header.jsp" %>
+ 
 	<div id="map">
 		<div id="goomap">
 		</div>
@@ -201,8 +195,7 @@
 		</div>	
 	</div>
 	<div id="smallDesc">
-		<label style="font-size:30px"><%=dong %>　　　　　　　　</label>
-		<label style="font-size:30px; font-family: 'Sigmar One', cursive; color:#67A2D5; ">COMMUN　　　　　</label>
+		<div id="communlab" style="text-align:center"><label style="font-size:30px; font-family: 'Sigmar One', cursive; color:#67A2D5"><%=dong %></label></div>
 		<input type="button" style="width:150px;height:40px" value="내 코뮨 설정" onClick="myCommunSet()"/>
 		<input type="button" style="width:150px;height:40px" value="게시판 들어가기" onClick="myCommunMove()"/>
 		<div id="descript">
@@ -210,14 +203,18 @@
 				<li><label>지역회원:<%=cnt%>명</label></li></br>
 				<li class="descstyle">머리글</li>
 				<li class="descstyle" style="width:500px">최신글</li>
-				<li class="descstyle">작성자</li></br>
+				<li class="descstyle" style="border-right:1px solid black;">작성자</li></br>
+				<div id="listShow">
 				<%for(int i=0;i<lst.size();i++){ 
 					member = lst.get(i);
 				%>
-					<li class="descstyle"><%=member.getHdName()%></li>
-					<li class="descstyle" style="width:500px"><%=member.getSubJect()%></li>
-					<li class="descstyle"><%=member.getUserId()%></li>
+				<div>
+					<li class="listStyle"><%=member.getHdName()%></li>
+					<li class="listStyle" style="width:500px;"><%=member.getSubJect()%></li>
+					<li class="listStyle" style="border-right:1px solid gray;"><%=member.getUserId()%></li>
+				</div>
 				<%} %>
+				</div>
 			</ul>		
 		</div>
 	</div>
