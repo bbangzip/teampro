@@ -13,7 +13,7 @@
 		#slide{position:absolute; background-color:black; z-index:1; left:30px;}			
 	
 	/*로그인박스*************************************************************************************/
-	#loginbox{width:320px; height:50px; position:absolute; left:70%; z-index:2;}
+	#loginbox{width:370px; height:50px; position:absolute; left:70%; z-index:2;}
 		#loginbox>ul{list-style-type:none; /*로그인박스 ul*/
 				 	 height:50px;  
 				 	 line-height:50px;
@@ -29,7 +29,9 @@
 				 		width:100px;
 				 		height:48px; 
 				 		line-height:50px;
+				 		text-shadow: 2px 2px  4px #000000;
 					   }
+		#loginbox>ul li:first-child {width:150px;}					   
 		#loginbox>ul>li>a:link 	  {color:white;} /*로그인 박스의 a태그*/					   
 		#loginbox>ul>li>a:visited {color:white;}
 		#loginbox>ul>li>a:hover   {color:red;}
@@ -124,24 +126,5 @@
 				 top:100px;
 				 background-color:#93bce1; 
 				 text-align: center;
-				 font-size:10px}	
+				 font-size:11px}	
 /**index.jsp용 CSS끝************************************************************************************/
-/**************************************************************************************/
-/**************************************************************************************/	
-	
-	
-	#communFindingBody{padding:0px;margin:0px}
-	#communFindingUl, #communFinding li{margin:0px; padding:0px; list-style-type:none; float:left}
-	#main{width:1000px; height:1000px;background-color:yellow;margin-left:50%;
-	left:-500px;position:absolute;}
-	#Banner{width:100%;height:100px;background-color:red;position:absolute;}
-	#Banner>h1{font-size:40px;text-align:center;line-height:100px}
-	#inform{position:absolute;width:200px;height:100px;top:0px;left:850px;}
-	#map{width:100%;height:400px;top:100px;position:absolute;}
-	#goomap{width:96%;height:90%;margin:2% 2% 2% 2%}
-	#localFind{width:100%;height:100px;top:500px;text-align:center;line-height:100px;position:absolute;}
-	/**************************************************************************************/
-	/**************************************************************************************/
-	#smallDesc{width:100%;height:400px;top:600px;text-align:right; position:absolute;}
-	#descript{margin:50px 0px 0px 50px}
-	.descstyle{background-color:yellow;width:200px;border:1px solid gray;text-align:center}
