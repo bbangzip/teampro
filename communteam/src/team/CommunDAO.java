@@ -416,7 +416,7 @@ public class CommunDAO extends DBConnection{
 		public ListVO getLiData(String id, int num){
 			ListVO lv = new ListVO();
 			try{
-					String sql = "select hdname,subject,content,listpwd,writedate,location,dong,file1,file2,file3,num from listTbl where num=?";
+					String sql = "select hdname,subject,content,listpwd,writedate,location,dong,file1,file2,file3,num,userid from listTbl where num=?";
 					dbConn(sql);
 					//pstmt.setString(1, id);
 					pstmt.setInt(1, num);
@@ -428,12 +428,13 @@ public class CommunDAO extends DBConnection{
 						lv.setListPwd(rs.getString(4));
 						lv.setWriteDate(rs.getString(5));
 						lv.setLocation(rs.getString(6));
-						lv.setDong(rs.getString(7));
 						String file[] = new String[3];
+						lv.setDong(rs.getString(7));
 						for(int i=0;i<file.length;i++){
 							file[i]=rs.getString(7+i);
 						}
 						lv.setNum(rs.getInt("num"));
+						lv.setUserId(rs.getString(12));
 						lv.setFilename(file);						
 												
 					}

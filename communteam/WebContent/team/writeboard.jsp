@@ -45,7 +45,12 @@
 			<li>제목</li>
 			<li><input type="text" name="subJect" maxlength="20" size="30" minlength="1" required title="최소 1글자 이상적으셔야합니다."></li>
 			<li>내용</li>
-			<li><textarea rows="6" name="content" cols="50" maxlength="500" minlength="1" required title="최소 1글자 이상적으셔야합니다."></textarea></li>
+			<li><textarea rows="6" name="content" cols="50" maxlength="500" minlength="1" required title="최소 1글자 이상적으셔야합니다.">
+장소:
+일자:
+시간:
+연락처:
+			</textarea></li>
 			<li>비밀번호</li>
 			<li><input type="text" name="listPwd" size="30" maxlength="12"  minlength="4" required title="최소 4글자 이상적으셔야합니다."></li></li>
 			<li>이미지1</li>

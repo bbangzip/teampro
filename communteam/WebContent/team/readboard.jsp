@@ -12,6 +12,7 @@
 	String gu = request.getParameter("gu");
 	String dong = request.getParameter("dong");
 	
+	
 	String id=(String)session.getAttribute("userId");
 	int num = Integer.parseInt(request.getParameter("num"));
 	
@@ -22,7 +23,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/write_readboard.css"/>
+<link rel="stylesheet" type="text/css" href="css/readboard.css"/>
 <script src="js/jquery-1.11.3.min.js"> </script>
 
 </head>
@@ -53,8 +54,10 @@
 			<li>제목</li>
 			<li><input type="text" name="subJect" maxlength="20" size="30" readonly	value="<%=chodata.getSubJect() %>"></li>
 			<li>내용</li>
-			<li><textarea rows="6" name="content" cols="50" readonly><%=chodata.getContent() %></textarea></li>
-
+			<li><textarea rows="6" name="content" cols="40" readonly><%=chodata.getContent() %></textarea></li>
+			<li><%=chodata.getUserId()%>에게</li>
+			<li><input type="button" value="쪽지보내기" onClick="window.open('page.jsp'), 'width=200, height=200, left=100, top=100'">
+			</li>
 	
 		</ul>
 	</div>
