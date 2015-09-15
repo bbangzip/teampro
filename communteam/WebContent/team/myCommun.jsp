@@ -23,7 +23,7 @@
 	String userIds;	
 	String subjects;
 	String writedates;
-	
+	int listNum;
 	ListVO lv = new ListVO();
 	List<ListVO> al = cd.getPlaces(dong);
 	
@@ -112,6 +112,10 @@
 <script type="text/javascript" src="js/jquery.gmap.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
 <style>
+	a:link{color:black}
+	a:hover{color:skyblue}
+	a:active{color:black}
+	a:visited{color:black}
 	body{padding:0px;margin:0px}
 	ul li{padding:0px;margin:0px;list-style-type:none;float:left}
 	#main{width:1000px; height:1200px;background-color:#D3E1EB;margin-left:50%;
@@ -134,7 +138,13 @@
 	#imgBoard{width:1000px;height:500px;margin:0px;background-color:#D3E1EB ;position:absolute;top:600px}
 	#imgShow li{width:200px;height:140px;list-style-type:none;float:left;
 		border:1px solid gray;margin:10px 45px 10px 45px;}
-	#boardMain .descstyle{background-color:white;width:150px;border:1px solid gray}
+
+	.descstyle{background-color:#88a3b9;width:150px;border-bottom:1px solid black;
+	border-top:1px solid black;border-left:1px solid black;text-align:center;color:white}
+	.listStyle{background-color:white;width:150px;
+	border-bottom:1px solid gray;border-left:1px solid gray;text-align:center;float:left}
+
+	.class{}
 	#navi1{width:950px;height:100px;position:absolute;text-align:center}
 	#navi2{position:absolute;width:100%;height:100px;text-align:center;bottom:0px}
 	#pageList{background-color:white}
@@ -161,6 +171,7 @@
 				userIds = lv.getUserId();
 				subjects = lv.getSubJect();
 				writedates = lv.getWriteDate();
+				listNum=lv.getNum();
 				places=place.split(",");
 			
 				if(i==0 ){		
@@ -171,7 +182,7 @@
 					out.println("latitude:"+places[0]+",");
 					out.println("longitude:"+places[1]+",");
 			
-					out.println("html:\"작성자:"+userIds+"</br>제목:"+subjects+"</br><a href=\'readboard.jsp?id="+userIds+"&subject="+subjects+"&writedate="+writedates+"\'>게시판으로 갑시다</a>\"");
+					out.println("html:\"번호:"+listNum+"작성자:"+userIds+"</br>제목:"+subjects+"</br><a href=\'readboard.jsp?num="+listNum+"&dong="+dong+"&gu="+gu+"\'>게시판으로 갑시다</a>\"");
 					out.println("}");
 			}
 			%>
@@ -192,6 +203,14 @@
 			$("#malocalShow").css("display","none")
 			
 		}})
+		
+		$(".class").on({mouseenter:function(){
+			$(this).children().css("background-color","#f0f3ff");	
+		}, mouseleave:function(){
+			$(this).children().css("background-color","white");
+		}})
+		
+		
 	});
 	function searchWord(num){
 		document.getElementById("num").value=num;
@@ -202,8 +221,8 @@
 		document.search.submit();
 	}
 	
-	function readBoardGo(BoardNumber){
-		location.href="readboard.jsp?dong=<%=dong%>&gu=<%=gu%>&userid=<%=id%>&num="+BoardNumber;
+	function readBoardGo(BoardNumber,writer){
+		location.href="readboard.jsp?dong=<%=dong%>&gu=<%=gu%>&num=+"BoardNumber;
 	}
 
 </script>
@@ -229,16 +248,17 @@
 				<li class="descstyle">머리글</li>
 				<li class="descstyle" style="width:400px">제목</li>
 				<li class="descstyle">작성자</li>
-				<li class="descstyle">시간</li>
+				<li class="descstyle" style="border-right:1px solid gray">시간</li>
 				<%for(int i=0;i<lst.size();i++){
 					lv = lst.get(i);
 					int number = lv.getNum();
-					
 				%>
-					<li class="descstyle"><%=lv.getHdName()%></li>
-					<li class="descstyle" style="width:400px"><a href="javascript:readBoardGo(<%=number%>)"><%=lv.getSubJect()%></a></li>
-					<li class="descstyle"><%=lv.getUserId()%></li>
-					<li class="descstyle"><%=lv.getWriteDate()%></li>
+				<li class="class">
+					<div class="listStyle"><%=lv.getHdName()%></div>
+					<div class="listStyle" style="width:400px"><a href="javascript:readBoardGo(<%=number%>,<%=lv.getUserId()%>)"><%=lv.getSubJect()%></a></div>
+					<div class="listStyle"><%=lv.getUserId()%></div>
+					<div class="listStyle" style="border-right:1px solid gray"><%=lv.getWriteDate()%></div>
+				</li><br/>
 				<%} %>
 			</ul><br/>
 			
